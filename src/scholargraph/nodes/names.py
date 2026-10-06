@@ -1,0 +1,10 @@
+"""节点名称常量：建图和路由都引用这里，避免手写字符串出现拼写不一致。"""
+
+PLANNER = "planner"
+HUMAN_REVIEW = "human_review"
+RESEARCHER = "researcher"
+CRITIC = "critic"
+WRITER = "writer"
+VERIFIER = "verifier"
+REVISER = "reviser"
+FINALIZER = "finalizer"
