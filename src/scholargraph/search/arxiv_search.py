@@ -62,7 +62,7 @@ class ArxivSearcher:
 
     def __init__(self, min_interval_seconds: float = ARXIV_MIN_INTERVAL_SECONDS) -> None:
         self._client = arxiv.Client(page_size=20, delay_seconds=min_interval_seconds, num_retries=3)
-        _enforce_timeout(self._client)
+        enforce_timeout(self._client)
         self._lock = threading.Lock()
 
     def search(self, query: str, max_results: int) -> list[Paper]:
@@ -98,7 +98,7 @@ class _TimeoutAdapter(HTTPAdapter):
         return super().send(request, **kwargs)
 
 
-def _enforce_timeout(client: arxiv.Client) -> None:
+def enforce_timeout(client: arxiv.Client) -> None:
     """`arxiv.Client` 发请求时不设超时：网络卡住时会一直等下去，还占着检索锁。
 
     这里给它内部的 HTTP 会话装上带超时的适配器，超时后抛出的异常会被转换成 `SearchError`。

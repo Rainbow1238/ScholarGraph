@@ -21,7 +21,7 @@ def test_output_streams_are_switched_to_utf8(monkeypatch):
     monkeypatch.setattr(sys, "stdout", gbk_stream)
     monkeypatch.setattr(sys, "stderr", gbk_stream)
 
-    cli._use_utf8_streams()
+    cli.use_utf8_streams()
     print("✓ 完成", file=sys.stdout, flush=True)
 
     assert raw_output.getvalue().decode("utf-8").strip() == "✓ 完成"

@@ -32,7 +32,7 @@ EXIT_INTERRUPTED = 130  # 被 Ctrl+C 中断时的惯例退出码
 
 
 def main(argv: list[str] | None = None) -> int:
-    _use_utf8_streams()
+    use_utf8_streams()
     args = _parse_args(argv)
     console = Console()
     logging.basicConfig(level=logging.WARNING, format="%(levelname)s %(name)s: %(message)s")
@@ -91,7 +91,7 @@ def main(argv: list[str] | None = None) -> int:
     return EXIT_OK
 
 
-def _use_utf8_streams() -> None:
+def use_utf8_streams() -> None:
     """让标准输出和标准错误使用 UTF-8。
 
     Windows 下输出被重定向或由其他程序捕获时，Python 默认使用系统的 GBK 编码，

@@ -26,7 +26,9 @@ class LLMOutputError(RuntimeError):
 
 
 class LLM(Protocol):
-    """节点眼中的大模型：只有两种能力。"""
+    """节点眼中的大模型：只有两种能力，外加一份累计的用量统计。"""
+
+    usage: TokenUsage
 
     def complete(self, system: str, user: str) -> str:
         """返回自由文本。"""

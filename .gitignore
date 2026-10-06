@@ -9,6 +9,7 @@ __pycache__/
 venv/
 checkpoints/
 outputs/
+evals/cache/
 .DS_Store
 Thumbs.db
 .idea/

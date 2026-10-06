@@ -36,11 +36,11 @@ def open_checkpointer(path: Path) -> Iterator[SqliteSaver]:
     # SqliteSaver 内部有锁，保证写入是串行的。
     connection = sqlite3.connect(path, check_same_thread=False)
     try:
-        yield SqliteSaver(connection, serde=_build_serializer())
+        yield SqliteSaver(connection, serde=build_serializer())
     finally:
         connection.close()
 
 
-def _build_serializer() -> JsonPlusSerializer:
+def build_serializer() -> JsonPlusSerializer:
     allowed_types = [(cls.__module__, cls.__name__) for cls in CHECKPOINTED_TYPES]
     return JsonPlusSerializer(allowed_msgpack_modules=allowed_types)
